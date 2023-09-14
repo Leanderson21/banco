@@ -71,7 +71,7 @@
       <td th:text="${pessoa.nome}"></td>
       <td th:text="${pessoa.cpf}"></td>
       <td th:text="${pessoa.endereco}"></td>
-      <td><button>Editar</button></td>
+      <td><a th:href="${(#mvc.url('PC#editarPessoa').arg(0, pessoa.idPessoa)).build()}"><button>Editar</button></a></td>
     </tr>
   </tbody>
       </table>

@@ -32,15 +32,24 @@ public class PessoaController {
 	
 	
 	@GetMapping("/editar/{id}")
-	public ModelAndView editarPessoa(@PathVariable("id") int id) {
-	    ModelAndView mv = new ModelAndView("cadastrarPessoa");
-	    List<Pessoa> pessoas = Pservice.listarPessoas(); // Lista de todas as pessoas
-	    Pessoa pessoa = Pservice.buscarPessoaPorId(id); // Pessoa específica para edição
-	    mv.addObject("pessoas", pessoas);
+	public String editarPessoa(@PathVariable("id") int id) {
+	    ModelAndView mv = new ModelAndView();
+	   Pessoa pessoa = Pservice.buscarPessoaPorId(id);
 	    mv.addObject("pessoa", pessoa);
-	    mv.addObject("novaPessoa", new Pessoa()); // Adicione um novo objeto Pessoa com o nome "novaPessoa" ao modelo
-	    return mv;
+	    return "redirect:/pessoas";
 	}
+	
+	
+	//@GetMapping("/editar/{id}")
+	//public ModelAndView editarPessoa(@PathVariable("id") int id) {
+	  //  ModelAndView mv = new ModelAndView("cadastrarPessoa");
+	  //  List<Pessoa> pessoas = Pservice.listarPessoas(); // Lista de todas as pessoas
+	   // Pessoa pessoa = Pservice.buscarPessoaPorId(id); // Pessoa específica para edição
+	   // mv.addObject("pessoas", pessoas);
+	   // mv.addObject("pessoa", pessoa);
+	   // mv.addObject("novaPessoa", new Pessoa()); // Adicione um novo objeto Pessoa com o nome "novaPessoa" ao modelo
+	   // return mv;
+	//}
 	
 	@GetMapping("/pessoa/{id}")
 	public ModelAndView buscarPessoa(@PathVariable("id") int id){
