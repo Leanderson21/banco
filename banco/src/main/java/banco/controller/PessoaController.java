@@ -26,17 +26,22 @@ public class PessoaController {
 	public ModelAndView listarPessoas() {
 	    ModelAndView mv = new ModelAndView("cadastrarPessoa");
 	    List<Pessoa> pessoas = Pservice.listarPessoas();
+	    Pessoa pessoa =  new Pessoa();
+	    String p1 = pessoa.setNome("");
+	    mv.addObject("pessoa", pessoa);
 	    mv.addObject("pessoas", pessoas);
 	    return mv;
 	}
 	
 	
 	@GetMapping("/editar/{id}")
-	public String editarPessoa(@PathVariable("id") int id) {
-	    ModelAndView mv = new ModelAndView();
+	public ModelAndView editarPessoa(@PathVariable("id") int id) {
+	    ModelAndView mv = new ModelAndView("cadastrarPessoa");
 	   Pessoa pessoa = Pservice.buscarPessoaPorId(id);
+	   List<Pessoa> pessoas = Pservice.listarPessoas();
+	   mv.addObject("pessoas", pessoas);
 	    mv.addObject("pessoa", pessoa);
-	    return "redirect:/pessoas";
+	    return mv;
 	}
 	
 	
