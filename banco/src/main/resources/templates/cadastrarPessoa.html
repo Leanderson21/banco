@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="../styles.css" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
+    <title>Cadastro de Pessoa</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 col-lg-2 d-md-block bg-light sidebar mt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Movimentação</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Conta</a>
+            </li>
+          </ul>
+        </nav>
+
+        <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
+          <div class="container custom-container mt-3">
+            <h4 class="text-center">Cadastro de Pessoa</h4>
+            <th:block th:include="mensagemValidacao1"></th:block>
+    <form th:action="@{/cadastrar/pessoa}" method="post" >
+
+<div class="mb-3">
+    <label for="nome" class="form-label">Nome*</label>
+    <input type="text" class="form-control custom-input" id="nome" name="nome">
+</div>
+<div class="mb-3">
+    <label for="cpf" class="form-label">CPF*</label>
+    <input type="text" class="form-control custom-input cpf-mask" id="cpf" name="cpf">
+</div>
+<div class="mb-3">
+    <label for="endereco" class="form-label">Endereço*</label>
+    <textarea class="form-control custom-input" id="endereco" name="endereco" rows="3"></textarea>
+</div>
+
+<button type="submit" class="btn btn-success">cadastrar</button>
+
+</form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="container custom-container mt-3">
+	<th:block th:include="testeModal"></th:block>
+      <table class="table">
+        <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cpf</th>
+      <th scope="col">Endereço</th>
+      <th scope="col"> Editar </th>
+    </tr>
+  </thead>
+  <tbody th:each="pessoa : ${pessoas}">
+    <tr>
+      <th th:text="${pessoa.idPessoa}">1</th>
+      <td th:text="${pessoa.nome}"></td>
+      <td th:text="${pessoa.cpf}"></td>
+      <td th:text="${pessoa.endereco}"></td>
+      <td><button>Editar</button></td>
+    </tr>
+  </tbody>
+      </table>
+        </div>
+   
+<script src="../eventos.js"></script>
+  </body>
+ 
+</html>
